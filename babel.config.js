@@ -3,6 +3,7 @@ process.env.VUE_CLI_BABEL_TARGET_NODE = 'node'
 
 module.exports = {
   presets: [
+    '@babel/preset-env',
     '@vue/app'
   ]
 }
