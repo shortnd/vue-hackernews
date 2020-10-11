@@ -7,10 +7,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "npm run lint && npm run test:unit",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test:unit:debug": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand"
   },
   "dependencies": {
-    "@vue/test-utils": "^1.1.0",
     "babel-core": "^7.0.0-bridge.0",
     "firebase": "^7.22.1",
     "vue": "^2.6.11"
@@ -23,6 +23,7 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-standard": "^5.1.2",
+    "@vue/test-utils": "^1.1.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.5.2",
     "eslint": "^6.7.2",
@@ -65,8 +66,7 @@
     }
   },
   "browserslist": [
-    "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "ie >= 9"
   ]
 }

@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import ItemList from '../ItemList.vue'
-import Item from '../Item.vue'
+import Item from '../../components/Item.vue'
 
 describe('ItemList.vue', () => {
   test('renders an Item for Each item in window.items', () => {
