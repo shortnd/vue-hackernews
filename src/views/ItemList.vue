@@ -1,30 +1,26 @@
 <template>
   <div class="item-list-view">
     <div class="item-list">
-      <item v-for="item in displayItems" :key="item.id" :item="item"></item>
+      <item v-for="item in $store.getters.displayItems" :key="item.id" :item="item"></item>
     </div>
   </div>
 </template>
 
 <script>
 import Item from '../components/Item.vue'
-import { fetchListData } from '../api/api'
 export default {
   components: {
     Item
   },
-  data: () => ({
-    displayItems: []
-  }),
   beforeMount () {
     this.loadItems()
-    // this.$bar.start()
   },
   methods: {
     loadItems () {
       this.$bar.start()
-      fetchListData('top').then(items => {
-        this.displayItems = items
+      this.$store.dispatch('fetchListData', {
+        type: 'top'
+      }).then(() => {
         this.$bar.finish()
       }).catch(() => {
         this.$bar.fail()

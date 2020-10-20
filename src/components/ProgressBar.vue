@@ -1,5 +1,5 @@
 <template>
-  <div :class="{
+  <div class="progress" :class="{
     hidden: hidden,
     error: error
   }"
@@ -45,7 +45,7 @@ export default {
   top: 0px;
   left: 0px;
   right: 0px;
-  height: 2px;
+  height: 5px;
   width: 0%;
   transition: width 0.2s, opacity 0.4s;
   opacity: 1;
