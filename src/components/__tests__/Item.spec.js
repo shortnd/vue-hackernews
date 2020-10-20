@@ -1,14 +1,17 @@
 import { shallowMount } from '@vue/test-utils'
 import Item from '../Item.vue'
+import mergeWith from 'lodash.mergewith'
 
 describe('Item.vue', () => {
+  function createWrapper (overrides) {
+    const defaultProps = { propsData: {} }
+    return shallowMount(Item, mergeWith(defaultProps, overrides))
+  }
   test('renders item.url', () => {
     const item = {
       url: 10
     }
-    const wrapper = shallowMount(Item, {
-      propsData: { item }
-    })
+    const wrapper = createWrapper({ propsData: { item } })
     expect(wrapper.text()).toContain(item.url)
   })
 
@@ -16,9 +19,7 @@ describe('Item.vue', () => {
     const item = {
       score: 10
     }
-    const wrapper = shallowMount(Item, {
-      propsData: { item }
-    })
+    const wrapper = createWrapper({ propsData: { item } })
     expect(wrapper.text()).toContain(item.score)
   })
 
@@ -26,9 +27,7 @@ describe('Item.vue', () => {
     const item = {
       by: 'some author'
     }
-    const wrapper = shallowMount(Item, {
-      propsData: { item }
-    })
+    const wrapper = createWrapper({ propsData: { item } })
     expect(wrapper.text()).toContain(item.by)
   })
 
@@ -37,9 +36,7 @@ describe('Item.vue', () => {
       url: 'http://some-url.com',
       title: 'some-title'
     }
-    const wrapper = shallowMount(Item, {
-      propsData: { item }
-    })
+    const wrapper = createWrapper({ propsData: { item } })
     const a = wrapper.find('a')
     expect(a.text()).toBe(item.title)
     expect(a.attributes().href).toBe(item.url)
