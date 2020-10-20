@@ -20,12 +20,22 @@
 
 <script>
 import Item from '../components/Item.vue'
+/**
+ * @param {string} string
+ * @returns {string}
+ */
+function capitalizeFirstLetter (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
 export default {
   components: {
     Item
   },
   beforeMount () {
     this.loadItems()
+  },
+  title () {
+    return `${capitalizeFirstLetter(this.$route.params.type)}`
   },
   methods: {
     loadItems () {
