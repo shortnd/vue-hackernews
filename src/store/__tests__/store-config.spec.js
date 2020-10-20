@@ -2,6 +2,9 @@ import Vuex from 'vuex'
 import { createLocalVue } from '@vue/test-utils'
 import cloneDeep from 'lodash.clonedeep'
 import flushPromises from 'flush-promises'
+import Router from 'vue-router'
+import { sync } from 'vuex-router-sync'
+import routerConfig from '../../router/router-config'
 import storeConfig from '../store-config'
 import { fetchListData } from '../../api/api'
 
@@ -9,6 +12,7 @@ jest.mock('../../api/api')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(Router)
 
 function createItems () {
   const arr = Array(22)
@@ -22,6 +26,8 @@ describe('store-config', () => {
 
     const clonedStoreConfig = cloneDeep(storeConfig)
     const store = new Vuex.Store(clonedStoreConfig)
+    const router = new Router(routerConfig)
+    sync(store, router)
     const type = 'top'
     fetchListData.mockImplementation((calledType) => {
       return calledType === type ? Promise.resolve(items) : Promise.resolve()

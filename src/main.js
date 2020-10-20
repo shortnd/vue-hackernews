@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Router from 'vue-router'
+import { sync } from 'vuex-router-sync'
 import App from './App'
 import ProgressBar from './components/ProgressBar.vue'
 import storeConfig from './store/store-config'
@@ -11,6 +12,8 @@ Vue.use(Router)
 
 const store = new Vuex.Store(storeConfig)
 const router = new Router(routerConfig)
+
+sync(store, router)
 
 Vue.config.productionTip = false
 
