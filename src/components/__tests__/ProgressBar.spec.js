@@ -47,6 +47,13 @@ describe('ProgressBar.vue', () => {
     expect(wrapper.element.style.width).toBe('0%')
   })
 
+  test('removes error class when start is called', () => {
+    const wrapper = shallowMount(ProgressBar)
+    wrapper.vm.fail()
+    wrapper.vm.start()
+    expect(wrapper.classes()).not.toContain('error')
+  })
+
   test('increases width by 1% every 100ms after start call', async () => {
     const wrapper = shallowMount(ProgressBar)
     wrapper.vm.start()
